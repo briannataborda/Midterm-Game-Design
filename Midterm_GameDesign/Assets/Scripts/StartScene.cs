@@ -11,7 +11,7 @@ public class StartScene : MonoBehaviour {
      
 
        public void StartGame(){
-               SceneManager.LoadScene("Elgin_PlayerProjectile");
+               GameHandler.Instance.StartGame();
        }
 
 
