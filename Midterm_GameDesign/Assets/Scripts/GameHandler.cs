@@ -13,10 +13,19 @@ public class GameHandler : MonoBehaviour
     public int totalLevels = 3;
 
 
+    void Awake(){
+        if (Instance == null){
+            Instance = this; 
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
     public void StartGame(){
         currentLevel = 1
         playerCurrentHealth = playerMaxHealth;
-        coins = 0 
+        coins = 0;
         playerAttack = 1;
         SceneManager.LoadScene("Level1");
     }
@@ -47,7 +56,7 @@ public class GameHandler : MonoBehaviour
     public void TakeDamage(int amount){
         playerCurrentHealth -= amount;
         if (playerCurrentHealth <= 0){
-            SceneManager.LoadGame("LoseScene");
+            SceneManager.LoadScene("LoseScene");
         }
     }
 
@@ -56,8 +65,9 @@ public class GameHandler : MonoBehaviour
     }
 
     public void HealPlayer(){
-        playerHealth += 1;
+        playerCurrentHealth += 1;
     }
+    
     public void UpgradeAttack(){
         playerAttackDamager += 1;
     }

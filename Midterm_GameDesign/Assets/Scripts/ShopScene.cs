@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI 
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class ShopScene : MonoBehaviour
 {
-    public TMPUGUUI coinText;
+    public TMP_Text coinText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,10 +29,10 @@ public class ShopScene : MonoBehaviour
     }
 
     public void NextLevel(){
-        GameHandler.Instance.LoadNextLevel();
+        GameHandler.Instance.nextScene();
     }
 
     void updateUI(){
-        coinText.txt = "Coins" + GameHandler.Instance.coins;
+        coinText.text = "Coins" + GameHandler.Instance.coins;
     }
 }
