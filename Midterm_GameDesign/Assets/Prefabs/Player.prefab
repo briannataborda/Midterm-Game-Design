@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 6262242440878326031}
   - component: {fileID: 8745369945378419967}
   - component: {fileID: 8210462470833064854}
+  - component: {fileID: 4811810862731077382}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -354,7 +355,7 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0}
   fireBase: {fileID: 105898090680789660}
   firePoint: {fileID: 3465703598022182106}
-  projectilePrefab: {fileID: 5046333323841914376, guid: 9fe27a307e1ed014ea93c943db54f043, type: 3}
+  projectilePrefab: {fileID: 5047064594375454985, guid: 9fe27a307e1ed014ea93c943db54f043, type: 3}
   projectileSpeed: 10
   attackRate: 2
 --- !u!61 &8210462470833064854
@@ -403,3 +404,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4811810862731077382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8943500105090172998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03244bff6d1380b41b534c45a106df2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
