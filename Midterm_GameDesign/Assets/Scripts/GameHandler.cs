@@ -20,6 +20,15 @@ public class GameHandler : MonoBehaviour
     public int totalLevels = 3;
 
 
+    void Awake(){
+        if (Instance == null){
+            Instance = this; 
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+    
     void Start() {
         player = GameObject.FindWithTag("Player");
         // sceneName = SceneManager.GetActiveScene().name;
@@ -30,14 +39,7 @@ public class GameHandler : MonoBehaviour
         StartGame();
     }
 
-    void Awake(){
-        if (Instance == null){
-            Instance = this; 
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
-    }
+    
 
     public void StartGame(){
         currentLevel = 1;
