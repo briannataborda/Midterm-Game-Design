@@ -20,42 +20,53 @@ public class GameHandler : MonoBehaviour
     public int totalLevels = 3;
 
 
-    void Awake(){
-        if (Instance == null){
-            Instance = this; 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
-    
-    void OnEnable(){
+
+    void OnEnable()
+    {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnDisable(){
+    void OnDisable()
+    {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         UpdateUIReferences();
         updateStatsDisplay();
     }
 
-    void UpdateUIReferences(){
+    void UpdateUIReferences()
+    {
         GameObject healthObj = GameObject.Find("HealthText");
         GameObject coinsObj = GameObject.Find("CandyText");
 
-        if (healthObj != null){
+        if (healthObj != null)
+        {
             textHealth = healthObj;
         }
 
-        if (coinsObj != null){
+        if (coinsObj != null)
+        {
             textCoins = coinsObj;
         }
     }
 
-    public void StartGame(){
+    public void StartGame()
+    {
         currentLevel = 1;
         playerCurrentHealth = playerMaxHealth;
         coins = 0;
@@ -63,77 +74,105 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-    public void GoToShop(){
+    public void GoToShop()
+    {
         SceneManager.LoadScene("ShopScene");
     }
 
-    public void nextScene(){
+    public void nextScene()
+    {
         currentLevel += 1;
 
-        if (currentLevel > totalLevels){
+        if (currentLevel > totalLevels)
+        {
             EndGame(true);
-        } else {
+        }
+        else
+        {
             SceneManager.LoadScene("Level" + currentLevel);
         }
     }
 
-    public void RestartGame(){
+    public void RestartGame()
+    {
         StartGame();
     }
 
-    public void EndGame(bool win){
+    public void EndGame(bool win)
+    {
         //GameStatus.LastWin = win; 
         SceneManager.LoadScene("EndScene");
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage)
+    {
         playerCurrentHealth -= damage;
-        if (playerCurrentHealth >= 0) {
+        if (playerCurrentHealth >= 0)
+        {
             updateStatsDisplay();
-        } else {
+        }
+        else
+        {
             SceneManager.LoadScene("LoseScene");
         }
-        
+
     }
 
-    public void PickupCoins(int amount) {
+    public void PickupCoins(int amount)
+    {
         coins += amount;
         updateStatsDisplay();
     }
 
-    public void updateStatsDisplay(){
+    public void updateStatsDisplay()
+    {
         Text healthTextTemp = textHealth.GetComponent<Text>();
-        if (healthTextTemp != null){
+        if (healthTextTemp != null)
+        {
             healthTextTemp.text = "HEALTH: " + playerCurrentHealth;
         }
-        
-        if (textCoins != null){
+
+        if (textCoins != null)
+        {
             Text coinsTextTemp = textCoins.GetComponent<Text>();
-            if (coinsTextTemp != null){
+            if (coinsTextTemp != null)
+            {
                 coinsTextTemp.text = "CANDY: " + coins;
             }
         }
-        
-        
+
+
     }
 
-    public void AddCoins(){
+    public void AddCoins()
+    {
         coins += 1;
         updateStatsDisplay();
     }
 
-    public void HealPlayer(){
+    public void HealPlayer()
+    {
         playerCurrentHealth += 1;
-        if (playerCurrentHealth > playerMaxHealth){
+        if (playerCurrentHealth > playerMaxHealth)
+        {
             playerCurrentHealth = playerMaxHealth;
         }
         updateStatsDisplay();
     }
-    
-    public void UpgradeAttack(){
+
+    public void UpgradeAttack()
+    {
         playerAttack += 1;
         updateStatsDisplay();
     }
 
+    public void CreditsScene()
+    {
+        SceneManager.LoadScene("CreditsScene");
+    }
+    public void BackButton()
+       {
+        SceneManager.LoadScene("StartScene");
+       }
 
 }
