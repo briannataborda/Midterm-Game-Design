@@ -32,7 +32,7 @@ public class PlayerMoveAimShoot : MonoBehaviour{
 
            if (Time.time >= nextAttackTime){
                   //if (Input.GetKeyDown(KeyCode.Space))
-                 if (Input.GetAxis("Attack") > 0){
+                 if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)){
                         playerFire();
                         nextAttackTime = Time.time + 1f / attackRate;
                   }

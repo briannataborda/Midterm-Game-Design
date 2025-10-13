@@ -19,7 +19,7 @@ public class PlayerProjectile : MonoBehaviour{
       void OnTriggerEnter2D(Collider2D other){
             if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.CompareTag("Enemy")) {
                   //gameHandlerObj.playerGetHit(damage);
-                  other.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage(damage);
+                  other.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage(GameHandler.Instance.playerAttack);
                   Debug.Log("Enemy Hit");
             }
            if (other.gameObject.tag != "Player") {

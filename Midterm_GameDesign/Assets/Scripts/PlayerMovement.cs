@@ -23,15 +23,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        animator.SetBool("isWalking", true);
+        Vector2 input = context.ReadValue<Vector2>();
+
+        if (Mathf.Abs(input.x) > Mathf.Abs(input.y)){
+            input.y = 0;
+        } else {
+            input.x = 0;
+        }
+        
         if(context.canceled)
         {
+            moveInput = Vector2.zero;
             animator.SetBool("isWalking", false);
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
-        }
-        moveInput = context.ReadValue<Vector2>();
+            animator.SetFloat("LastInputX", animator.GetFloat("InputX"));
+            animator.SetFloat("LastInputY", animator.GetFloat("InputY"));
+        } else {
+        moveInput = input;
+        animator.SetBool("inWalking", true);
         animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
+        animator.SetFloat("InputX", moveInput.y);
+        }
     }
 }

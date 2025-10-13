@@ -29,17 +29,23 @@ public class GameHandler : MonoBehaviour
         }
     }
     
-    void Start() {
-        player = GameObject.FindWithTag("Player");
-        // sceneName = SceneManager.GetActiveScene().name;
-        // //if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
-        //         playerHealth = StartPlayerHealth;
-        // //}
-        // updateStatsDisplay();
-        StartGame();
+    void OnEnable(){
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    
+    void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        UpdateUIReferences();
+        updateStatsDisplay();
+    }
+
+    void UpdateUIReferences(){
+        GameObject healthObj = GameObject.Find("HealthText");
+        GameObject coinsObj = GameObject.Find("CandyText");
+    }
 
     public void StartGame(){
         currentLevel = 1;
@@ -47,7 +53,6 @@ public class GameHandler : MonoBehaviour
         coins = 0;
         playerAttack = 1;
         SceneManager.LoadScene("Level1");
-        updateStatsDisplay();
     }
 
     public void GoToShop(){
@@ -77,11 +82,10 @@ public class GameHandler : MonoBehaviour
         playerCurrentHealth -= damage;
         if (playerCurrentHealth >= 0) {
             updateStatsDisplay();
-        }
-        
-        if (playerCurrentHealth <= 0){
+        } else {
             SceneManager.LoadScene("LoseScene");
         }
+        
     }
 
     public void PickupCoins(int amount) {
@@ -91,24 +95,38 @@ public class GameHandler : MonoBehaviour
 
     public void updateStatsDisplay(){
         Text healthTextTemp = textHealth.GetComponent<Text>();
-        healthTextTemp.text = "HEALTH: " + playerCurrentHealth;
-
-        Text coinsTextTemp = textCoins.GetComponent<Text>();
-        coinsTextTemp.text = "CANDY: " + coins;
+        if (healthTextTemp != null){
+            healthTextTemp.text = "HEALTH: " + playerCurrentHealth;
+        }
+        
+        if (textCoins != null){
+            Text coinsTextTemp = textCoins.GetComponent<Text>();
+            if (coinsTextTemp != null){
+                coinsTextTemp.text = "CANDY: " + coins;
+            }
+        }
+        
+        
     }
 
     public void AddCoins(){
         coins += 1;
+        updateStatsDisplay();
     }
 
     public void HealPlayer(){
         playerCurrentHealth += 1;
+        if (playerCurrentHealth > playerMaxHealth){
+        playerCurrentHealth = playerMaxHealth;
+        
+        updateStatsDisplay();
+        }
     }
     
     public void UpgradeAttack(){
         playerAttack += 1;
+        updateStatsDisplay();
     }
-  
 
 
 }
