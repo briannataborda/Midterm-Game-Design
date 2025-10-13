@@ -10,7 +10,7 @@ public class GameHandler : MonoBehaviour
     private GameObject player;
     public int playerMaxHealth = 100;
     public int playerCurrentHealth = 100;
-    public int playerAttack = 1;
+    public int playerAttack = 25;
     public int coins = 0;
 
     public GameObject textHealth;
@@ -59,7 +59,7 @@ public class GameHandler : MonoBehaviour
         currentLevel = 1;
         playerCurrentHealth = playerMaxHealth;
         coins = 0;
-        playerAttack = 1;
+        playerAttack = 25;
         SceneManager.LoadScene("Level1");
     }
 
