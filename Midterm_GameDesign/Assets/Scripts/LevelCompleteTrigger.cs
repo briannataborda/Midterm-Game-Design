@@ -4,7 +4,9 @@ public class LevelCompleteTrigger : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Player")){
-            GameHandler.Instance.GoToShop();
+            if (GameHandler.Instance != null){
+                GameHandler.Instance.GoToShop();
+            } 
         }
     }
 }
