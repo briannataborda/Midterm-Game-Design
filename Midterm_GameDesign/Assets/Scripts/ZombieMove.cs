@@ -11,7 +11,7 @@ public class ZombieMove : MonoBehaviour {
        public int damage = 20;
 
        public int EnemyLives = 4;
-       private GameHandler gameHandler;
+       //private GameHandler gameHandler;
 
        public float attackRange = 15;
        public bool isAttacking = false;
@@ -28,25 +28,22 @@ public class ZombieMove : MonoBehaviour {
                     target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
               }
 
-              if (GameObject.FindWithTag ("GameHandler") != null) {
-                  gameHandler = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
-              }
+              // if (GameObject.FindWithTag ("GameHandler") != null) {
+              //     gameHandler = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
+              // }
        }
 
        void Update () {
               float DistToPlayer = Vector3.Distance(transform.position, target.position);
 
-              if ((target != null) && (DistToPlayer <= attackRange)){
+              if (DistToPlayer <= attackRange){
                      transform.position = Vector2.MoveTowards (transform.position, target.position, speed * Time.deltaTime);
-                    //anim.SetBool("Walk", true);
-                    //flip enemy to face player direction. Wrong direction? Swap the * -1.
-                    if (target.position.x > gameObject.transform.position.x){
-                                   gameObject.transform.localScale = new Vector2(scaleX, gameObject.transform.localScale.y);
-                    } else {
-                                    gameObject.transform.localScale = new Vector2(scaleX * -1, gameObject.transform.localScale.y);
-                    }
+                     if (target.position.x > gameObject.transform.position.x){
+                            gameObject.transform.localScale = new Vector2(scaleX, gameObject.transform.localScale.y);
+                     } else {
+                            gameObject.transform.localScale = new Vector2(scaleX * -1, gameObject.transform.localScale.y);
+                     }
               }
-               //else { anim.SetBool("Walk", false);}
        }
 
        //2. Replace OnCollisionEnter2D() with this version, to include knockback:
@@ -54,21 +51,21 @@ public class ZombieMove : MonoBehaviour {
               if (other.gameObject.tag == "Player") {
                      isAttacking = true;
                      //anim.SetBool("Attack", true);
-                     gameHandler.TakeDamage(damage);
+                     GameHandler.Instance.TakeDamage(damage);
                      //rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
                      //StartCoroutine(HitEnemy());
 
                      //Tell the player to STOP getting knocked back before getting knocked back:
                      other.gameObject.GetComponent<Player_EndKnockBack>().EndKnockBack();
                      //Add force to the player, pushing them back without teleporting:
-                    Rigidbody2D pushRB = other.gameObject.GetComponent<Rigidbody2D>();
-                    Vector2 moveDirectionPush = rb2D.transform.position - other.transform.position;
-                    pushRB.AddForce(moveDirectionPush.normalized * knockBackForce * - 1f, ForceMode2D.Impulse);
+                     Rigidbody2D pushRB = other.gameObject.GetComponent<Rigidbody2D>();
+                     Vector2 moveDirectionPush = rb2D.transform.position - other.transform.position;
+                     pushRB.AddForce(moveDirectionPush.normalized * knockBackForce * - 1f, ForceMode2D.Impulse);
               }
        }
 
        public void OnCollisionExit2D(Collision2D other){
-              if (other.gameObject.tag == "Player") {
+              if (other.gameObject.CompareTag("Player")) {
                      isAttacking = false;
                      //anim.SetBool("Attack", false);
               }

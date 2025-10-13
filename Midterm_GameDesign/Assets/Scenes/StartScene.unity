@@ -741,8 +741,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1504569152}
   - component: {fileID: 1504569153}
+  - component: {fileID: 1504569154}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,6 +776,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3767a7c38c7b0154594ab43962cc0332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1504569154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504569151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698abd9234220754186a6948cb0d58dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxHealth: 100
+  playerCurrentHealth: 100
+  playerAttack: 1
+  coins: 0
+  textHealth: {fileID: 0}
+  textCoins: {fileID: 0}
+  currentLevel: 1
+  totalLevels: 3
 --- !u!1 &1589860002
 GameObject:
   m_ObjectHideFlags: 0

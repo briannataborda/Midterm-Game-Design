@@ -17,30 +17,69 @@ public class PlayerProjectile : MonoBehaviour{
 
       //if the bullet hits a collider, play the explosion animation, then destroy the effect and the bullet
       void OnTriggerEnter2D(Collider2D other){
-            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.CompareTag("Enemy")) {
-                  //gameHandlerObj.playerGetHit(damage);
-                  other.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage(GameHandler.Instance.playerAttack);
-                  Debug.Log("Enemy Hit");
+            if (other.CompareTag("Enemy")){
+                  EnemyTakeDamage enemy = other.GetComponent<EnemyTakeDamage>();
+                  if (enemy != null){
+                        int damageAmount = 50;
+                        if (GameHandler.Instance != null){
+                              damageAmount = GameHandler.Instance.playerAttack;
+                        }
+                  
+                  Debug.Log("Dealing " + damageAmount + " damage to enemy");
+                  enemy.TakeDamage(damageAmount);
+                  } 
+                  DestroyProjectile();
+            } else if (!other.CompareTag("Player")){
+                  DestroyProjectile();
             }
-           if (other.gameObject.tag != "Player") {
-                  gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                  //GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);
-                  projectileArt.SetActive(false);
-                  //Destroy (animEffect, 0.5);
-                  StartCoroutine(SelfDestruct());
-            }
-      }
+      } 
 
-      IEnumerator SelfDestructHit(GameObject VFX){
-            //MakeSplat();
-            yield return new WaitForSeconds(SelfDestructVFX);
-            Destroy (VFX);
-            Destroy (gameObject);
-      }
+
+      //       if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.CompareTag("Enemy")) {
+      //             //gameHandlerObj.playerGetHit(damage);
+      //             other.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage(GameHandler.Instance.playerAttack);
+                  
+      //       }
+      //      if (other.gameObject.tag != "Player") {
+      //             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+      //             //GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);
+      //             projectileArt.SetActive(false);
+      //             //Destroy (animEffect, 0.5);
+      //             StartCoroutine(SelfDestruct());
+      //       }
+      
+
+      void DestroyProjectile(){
+        BoxCollider2D col = GetComponent<BoxCollider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        if (projectileArt != null)
+        {
+            projectileArt.SetActive(false);
+        }
+
+        if (hitEffectAnim != null)
+        {
+            GameObject effect = Instantiate(hitEffectAnim, transform.position, Quaternion.identity);
+            Destroy(effect, 0.5f);
+        }
+
+        Destroy(gameObject, 0.1f);
+    }
+
+      // IEnumerator SelfDestructHit(GameObject VFX){
+      //       //MakeSplat();
+      //       yield return new WaitForSeconds(SelfDestructVFX);
+      //       //Destroy (VFX);
+      //       Destroy (gameObject);
+      // }
 
       IEnumerator SelfDestruct(){
             yield return new WaitForSeconds(SelfDestructTime);
-            Destroy (gameObject);
+            Destroy(gameObject);
       }
 
       /*

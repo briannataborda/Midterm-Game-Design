@@ -8,18 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/StartScene.unity
-    guid: 5d20342e249a31a4aba238978e2fe330
-  - enabled: 1
-    path: Assets/Scenes/Level1Scene.unity
-    guid: e04c8f5e528d00c40872ae8da9614e34
   - enabled: 0
     path: Assets/Scenes/Elgin_PlayerProjectile.unity
     guid: c33922d77a1f8e7409cd308324615a47
   - enabled: 1
-    path: Assets/Scenes/EndScene.unity
-    guid: 5a11d067098ba8544856db8f6b310f24
+    path: Assets/Scenes/StartScene.unity
+    guid: 5d20342e249a31a4aba238978e2fe330
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: e04c8f5e528d00c40872ae8da9614e34
   - enabled: 1
     path: Assets/Scenes/Level2Scene.unity
     guid: 51767234176427e448a6b79ede824e16
@@ -29,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopScene.unity
     guid: 3e61c5cff7df6db49a53e25bc2c0ea1a
+  - enabled: 0
+    path: Assets/Scenes/EndScene.unity
+    guid: 5a11d067098ba8544856db8f6b310f24
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

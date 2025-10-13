@@ -9,16 +9,16 @@ public class EnemyTakeDamage : MonoBehaviour {
        public int maxHealth = 100;
        public int currentHealth;
 
-       private GameHandler gameHandler;
+       //private GameHandler gameHandler;
        public int droppedCoins = 10;
 
        void Start(){
               rend = GetComponentInChildren<Renderer> ();
               anim = GetComponentInChildren<Animator> ();
               currentHealth = maxHealth;
-              if (GameObject.FindWithTag ("GameHandler") != null) {
-                  gameHandler = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
-              }
+              // if (GameObject.FindWithTag ("GameHandler") != null) {
+              //     gameHandler = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
+              // }
        }
 
        public void TakeDamage(int damage){
@@ -34,8 +34,18 @@ public class EnemyTakeDamage : MonoBehaviour {
        void Die(){
               //Instantiate (healthLoot, transform.position, Quaternion.identity);
               //anim.SetBool ("isDead", true);
-              GetComponent<Collider2D>().enabled = false;
-              gameHandler.PickupCoins(droppedCoins);
+              // GetComponent<Collider2D>().enabled = false;
+              // gameHandler.PickupCoins(droppedCoins);
+              // StartCoroutine(Death());
+
+              Collider2D col = GetComponent<Collider2D>();
+              if (col != null){
+                     col.enabled = false;
+              }
+
+              if (GameHandler.Instance != null){
+                     GameHandler.Instance.PickupCoins(droppedCoins);
+              }
               StartCoroutine(Death());
        }
 

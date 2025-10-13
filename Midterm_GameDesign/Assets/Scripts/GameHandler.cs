@@ -45,6 +45,14 @@ public class GameHandler : MonoBehaviour
     void UpdateUIReferences(){
         GameObject healthObj = GameObject.Find("HealthText");
         GameObject coinsObj = GameObject.Find("CandyText");
+
+        if (healthObj != null){
+            textHealth = healthObj;
+        }
+
+        if (coinsObj != null){
+            textCoins = coinsObj;
+        }
     }
 
     public void StartGame(){
@@ -117,10 +125,9 @@ public class GameHandler : MonoBehaviour
     public void HealPlayer(){
         playerCurrentHealth += 1;
         if (playerCurrentHealth > playerMaxHealth){
-        playerCurrentHealth = playerMaxHealth;
-        
-        updateStatsDisplay();
+            playerCurrentHealth = playerMaxHealth;
         }
+        updateStatsDisplay();
     }
     
     public void UpgradeAttack(){
