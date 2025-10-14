@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7422359302307586999}
-  - component: {fileID: 4987263174892693844}
+  - component: {fileID: 204209234781736393}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: GameHandler
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4987263174892693844
+--- !u!114 &204209234781736393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxHealth: 100
   playerCurrentHealth: 100
-  playerAttack: 1
+  playerAttack: 25
   coins: 0
   textHealth: {fileID: 0}
   textCoins: {fileID: 0}

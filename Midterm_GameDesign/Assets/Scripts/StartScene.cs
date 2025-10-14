@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour {
 
 
-     
 
        public void StartGame(){
                GameHandler.Instance.StartGame();

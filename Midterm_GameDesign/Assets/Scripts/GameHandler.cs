@@ -192,11 +192,13 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("credit button was clicked.");
         SceneManager.LoadScene("CreditsScene");
+        GameHandler.Instance.Awake();
     }
 
     public void BackButton(){
         Debug.Log("backbutton clicked");
         SceneManager.LoadScene("StartScene");
+        GameHandler.Instance.Awake();
     }
 
 }
