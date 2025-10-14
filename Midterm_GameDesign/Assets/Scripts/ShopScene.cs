@@ -35,6 +35,14 @@ public class ShopScene : MonoBehaviour
     }
 
     void updateUI(){
-        coinText.text = "Coins: " + GameHandler.Instance.coins;
+        if (coinText != null){
+            coinText.text = "Coins: " + GameHandler.Instance.coins;
+        }
+        if (healthText != null){
+            healthText.text = "Health: " + GameHandler.Instance.playerCurrentHealth + "/" + GameHandler.Instance.playerMaxHealth;
+        }
+        if (attackText != null){
+            attackText.text = "Attack: " + GameHandler.Instance.playerAttack;
+        }
     }
 }

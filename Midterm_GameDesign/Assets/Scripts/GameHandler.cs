@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameHandler : MonoBehaviour
 {
@@ -22,17 +23,22 @@ public class GameHandler : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("gamehandler awake called");
         if (Instance == null)
         {
+            Debug.Log("create new gamehandler");
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Debug.Log("gamehandler alr exists, destroy");
             Destroy(gameObject);
         }
     }
-
+    void Start(){
+        Debug.Log("Gamehandler start called");
+    }
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -45,8 +51,22 @@ public class GameHandler : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateUIReferences();
-        updateStatsDisplay();
+        EventSystem[] eventSystems = FindObjectsOfType<EventSystem>();
+        if (eventSystems.Length > 1){
+            for (int i = 1; i < eventSystems.Length; i++){
+                Destroy(eventSystems[i].gameObject);
+            }
+        }
+            
+        if (scene.name == "CreditsScene" || scene.name == "StartScene" || scene.name == "EndScene" || scene.name == "LoseScene"){
+            return;
+        }
+
+        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "ShopScene"){
+            UpdateUIReferences();
+            updateStatsDisplay();
+        }
+        
     }
 
     void UpdateUIReferences()
@@ -126,10 +146,12 @@ public class GameHandler : MonoBehaviour
 
     public void updateStatsDisplay()
     {
-        Text healthTextTemp = textHealth.GetComponent<Text>();
-        if (healthTextTemp != null)
-        {
-            healthTextTemp.text = "HEALTH: " + playerCurrentHealth;
+        if (textHealth != null){
+            Text healthTextTemp = textHealth.GetComponent<Text>();
+            if (healthTextTemp != null)
+            {
+                healthTextTemp.text = "HEALTH: " + playerCurrentHealth;
+            }
         }
 
         if (textCoins != null)
@@ -168,11 +190,13 @@ public class GameHandler : MonoBehaviour
 
     public void CreditsScene()
     {
+        Debug.Log("credit button was clicked.");
         SceneManager.LoadScene("CreditsScene");
     }
-    public void BackButton()
-       {
+
+    public void BackButton(){
+        Debug.Log("backbutton clicked");
         SceneManager.LoadScene("StartScene");
-       }
+    }
 
 }
