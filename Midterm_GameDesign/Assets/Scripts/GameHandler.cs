@@ -184,7 +184,7 @@ public class GameHandler : MonoBehaviour
 
     public void UpgradeAttack()
     {
-        playerAttack += 1;
+        playerAttack += 5;
         updateStatsDisplay();
     }
 

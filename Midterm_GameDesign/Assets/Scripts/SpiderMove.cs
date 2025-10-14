@@ -8,7 +8,7 @@ public class SpiderMove : MonoBehaviour {
        public Rigidbody2D rb2D;
        public float speed = 0.5f;
        private Transform target;
-       public int damage = 10;
+       public int damage = 15;
 
        public int EnemyLives = 2;
        //private GameHandler gameHandler;
