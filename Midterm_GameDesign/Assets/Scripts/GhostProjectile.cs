@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GhostProjectile : MonoBehaviour {
 
-       public GameHandler gameHandlerObj;
-       public int damage =1;
+       public int damage = 30;
        public float speed = 10f;
        private Transform playerTrans;
        private Vector2 target;
@@ -17,9 +16,6 @@ public class GhostProjectile : MonoBehaviour {
              playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
              target = new Vector2(playerTrans.position.x, playerTrans.position.y);
 
-             if (gameHandlerObj == null){
-               gameHandlerObj = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
-             }
              StartCoroutine(selfDestruct());
 
              //code for trajectory (moves target way beyond player position):
@@ -37,12 +33,10 @@ public class GhostProjectile : MonoBehaviour {
 
        //if the bullet hits a collider, play the explosion animation, then destroy the effect and the bullet
        void OnTriggerEnter2D(Collider2D collision){
-              if (collision.gameObject.tag == "Player") {
-                     gameHandlerObj.TakeDamage(damage);
+              if (collision.CompareTag("Player")) {
+                     GameHandler.Instance.TakeDamage(damage);
               }
-              if (collision.gameObject.tag != "enemyShooter") {
-                     GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);
-                     Destroy (animEffect, 0.5f);
+              if (!collision.CompareTag("Enemy")) {
                      Destroy (gameObject);
               }
        }
