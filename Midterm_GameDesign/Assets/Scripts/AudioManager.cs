@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour {
         //public AudioSource GameMusic2;
 
         private AudioSource theMusic;
-        private static float musicTimeStamp = 0.0f;
+        private static float MusicTimeStamp = 0.0f;
         public float currentTimeStamp;
 
         void Awake(){
@@ -21,22 +21,22 @@ public class AudioManager : MonoBehaviour {
                 || (SceneManager.GetActiveScene().name == "EndLose")
                 || (SceneManager.GetActiveScene().name == "EndWin") 
                 ){
-                        theMusic = GameMusic1;
+                     //   theMusic = GameMusic1;
                 } 
 
                 //set the time and play:
-                theMusic.time = MusicTimeStamp;
-                theMusic.Play();
+              //  theMusic.time = MusicTimeStamp;
+             //   theMusic.Play();
         }
 
         void Update(){
                //keep track of timestamp, to auto-call it in the next scene:
-               MusicTimeStamp = theMusic.time;
-               currentTimeStamp = theMusic.time;
+              // MusicTimeStamp = theMusic.time;
+              // currentTimeStamp = theMusic.time;
         }
 
 //change timestamp (can be called by door code):
         public void SetTimeStamp(){
-               musicTimeStamp = theMusic.time;
+              // MusicTimeStamp = theMusic.time;
         }
 }

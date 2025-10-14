@@ -31,6 +31,9 @@ public class ShopScene : MonoBehaviour
     }
 
     public void NextLevel(){
+        if (GameObject.FindWithTag("MusicManager") != null){
+                GameObject.FindWithTag("MusicManager").GetComponent<AudioManager>().SetTimeStamp();
+        }
         GameHandler.Instance.nextScene();
     }
 
