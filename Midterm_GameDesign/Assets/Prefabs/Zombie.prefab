@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  healthLoot: {fileID: 0}
+  healthLoot: {fileID: 9215700529673031135, guid: 83c36c276bbbe5744a0f2a862346ef2e, type: 3}
   maxHealth: 100
   currentHealth: 100
   droppedCoins: 10

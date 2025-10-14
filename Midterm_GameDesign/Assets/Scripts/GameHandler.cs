@@ -24,6 +24,11 @@ public class GameHandler : MonoBehaviour
     void Awake()
     {
         Debug.Log("gamehandler awake called");
+        MakeGameHandler();
+    }
+
+
+    public void MakeGameHandler(){
         if (Instance == null)
         {
             Debug.Log("create new gamehandler");
@@ -36,6 +41,7 @@ public class GameHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start(){
         Debug.Log("Gamehandler start called");
     }

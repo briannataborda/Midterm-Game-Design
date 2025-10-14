@@ -22,5 +22,18 @@ public class StartScene : MonoBehaviour {
                #endif
        }
 
+       public void TutorialScene() 
+        {
+        SceneManager.LoadScene("TutorialScene");
+        }
+
+        public void CreditsScene()
+        {
+                Debug.Log("credit button was clicked.");
+                SceneManager.LoadScene("CreditsScene");
+                // GameHandler.Instance.Awake();
+                GameHandler.Instance.MakeGameHandler();
+        }
+
 
 }

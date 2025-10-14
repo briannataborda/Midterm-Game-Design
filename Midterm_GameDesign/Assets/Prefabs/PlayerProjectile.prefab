@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 150
   m_Sprite: {fileID: -966466702988171720, guid: fdd9aaacbd890a14195379e7303d6b8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  hitEffectAnim: {fileID: 0}
+  hitEffectAnim: {fileID: 185083670552112660, guid: b61e0f18aacc4a946a872dd9d1709b01, type: 3}
   SelfDestructTime: 4
   SelfDestructVFX: 0.5
   projectileArt: {fileID: 214427839222128499}
-  splatterPrefab: {fileID: 0}
+  splatterPrefab: {fileID: 2050285156852923379, guid: 2e5b537be26df874cbceaca88f17f8f2, type: 3}

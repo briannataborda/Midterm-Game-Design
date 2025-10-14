@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTakeDamage : MonoBehaviour {
        private Renderer rend;
-       public Animator anim;
+       //public Animator anim;
        public GameObject healthLoot;
        public int maxHealth = 100;
        public int currentHealth;
@@ -14,7 +14,7 @@ public class EnemyTakeDamage : MonoBehaviour {
 
        void Start(){
               rend = GetComponentInChildren<Renderer> ();
-              anim = GetComponentInChildren<Animator> ();
+              //anim = GetComponentInChildren<Animator> ();
               currentHealth = maxHealth;
               // if (GameObject.FindWithTag ("GameHandler") != null) {
               //     gameHandler = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
@@ -23,8 +23,8 @@ public class EnemyTakeDamage : MonoBehaviour {
 
        public void TakeDamage(int damage){
               currentHealth -= damage;
-              //rend.material.color = new Color(2.4f, 0.9f, 0.9f, 1f);
-              //StartCoroutine(ResetColor());
+              rend.material.color = new Color(2.4f, 0.9f, 0.9f, 1f);
+              StartCoroutine(ResetColor());
               //anim.SetTrigger ("Hurt");
               if (currentHealth <= 0){
                      Die();
@@ -32,7 +32,7 @@ public class EnemyTakeDamage : MonoBehaviour {
        }
 
        void Die(){
-              //Instantiate (healthLoot, transform.position, Quaternion.identity);
+              Instantiate (healthLoot, transform.position, Quaternion.identity);
               //anim.SetBool ("isDead", true);
               // GetComponent<Collider2D>().enabled = false;
               // gameHandler.PickupCoins(droppedCoins);
@@ -44,7 +44,8 @@ public class EnemyTakeDamage : MonoBehaviour {
               }
 
               if (GameHandler.Instance != null){
-                     GameHandler.Instance.PickupCoins(droppedCoins);
+                    //weadded atual candy drops,so this is not needed
+                    // GameHandler.Instance.PickupCoins(droppedCoins);
               }
               StartCoroutine(Death());
        }
