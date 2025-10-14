@@ -188,6 +188,11 @@ public class GameHandler : MonoBehaviour
         updateStatsDisplay();
     }
 
+    public void TutorialScene() 
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+
     public void CreditsScene()
     {
         Debug.Log("credit button was clicked.");
