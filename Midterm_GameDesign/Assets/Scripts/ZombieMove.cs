@@ -8,7 +8,7 @@ public class ZombieMove : MonoBehaviour {
        public Rigidbody2D rb2D;
        public float speed = 0.1f;
        private Transform target;
-       public int damage = 20;
+       public int damage = 25;
 
        public int EnemyLives = 4;
        //private GameHandler gameHandler;
