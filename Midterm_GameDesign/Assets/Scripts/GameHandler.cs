@@ -174,7 +174,7 @@ public class GameHandler : MonoBehaviour
 
     public void HealPlayer()
     {
-        playerCurrentHealth += 1;
+        playerCurrentHealth += 5;
         if (playerCurrentHealth > playerMaxHealth)
         {
             playerCurrentHealth = playerMaxHealth;
