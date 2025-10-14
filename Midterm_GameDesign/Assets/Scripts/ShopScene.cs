@@ -15,8 +15,8 @@ public class ShopScene : MonoBehaviour
     }
 
     public void BuyHealth(){
-        if (GameHandler.Instance.coins >= 5){
-            GameHandler.Instance.coins -= 5; 
+        if (GameHandler.Instance.coins >= 10){
+            GameHandler.Instance.coins -= 10; 
             GameHandler.Instance.HealPlayer();
             updateUI();
         }
